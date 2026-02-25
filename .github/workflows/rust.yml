@@ -19,6 +19,17 @@ jobs:
         run: cargo build --verbose
       - name: Run tests
         run: cargo test --verbose
+
+  udeps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # install the nightly Rust channel
+      - run: rustup toolchain install nightly
+      - run: rustup default nightly
+
       - name: Run cargo-udeps
         uses: aig787/cargo-udeps-action@v1
         with:
